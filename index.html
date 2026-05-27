@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Templates Românticos | Dia dos Namorados</title>
+
+  <style>
+    @font-face {
+      font-family: 'SloopScript';
+      src: url('./Sloop-ScriptThree.ttf') format('truetype');
+    }
+
+    :root {
+      --burgundy: #5a0f1d;
+      --burgundy-light: #7a1f32;
+      --white: #ffffff;
+      --soft: #f7f3f4;
+      --black: #1f1f1f;
+      --gray: #666666;
+      --shadow: 0 10px 30px rgba(0,0,0,0.12);
+      --radius: 24px;
+      --transition: 0.4s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    section {
+      padding: 90px 7%;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.1;
+    }
+
+    .signature {
+      font-family: 'SloopScript', cursive;
+      font-weight: normal;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      background:
+        radial-gradient(circle at top left, rgba(122,31,50,0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(90,15,29,0.18), transparent 30%),
+        var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(122,31,50,0.06);
+      border-radius: 50%;
+      top: -180px;
+      right: -120px;
+      filter: blur(40px);
+    }
+
+    .hero-content {
+      flex: 1;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero-content span {
+      color: var(--burgundy-light);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      margin: 20px 0;
+      color: var(--burgundy);
+    }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 580px;
+      color: var(--gray);
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 16px 28px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: var(--transition);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--burgundy);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: var(--burgundy-light);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(90,15,29,0.15);
+      color: var(--burgundy);
+      background: rgba(90,15,29,0.04);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(90,15,29,0.1);
+    }
+
+    .hero-image {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      animation: floating 5s ease-in-out infinite;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 32px;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .floating-card {
+      position: absolute;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      max-width: 220px;
+    }
+
+    .floating-card strong {
+      color: var(--burgundy);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .card-1 {
+      left: -20px;
+      bottom: 50px;
+    }
+
+    .card-2 {
+      right: -10px;
+      top: 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--burgundy);
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .benefits {
+      background: var(--soft);
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    .benefit-card {
+      background: var(--white);
+      padding: 35px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .benefit-card h3 {
+      margin: 18px 0 12px;
+      color: var(--burgundy);
+    }
+
+    .benefit-card p {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .products-section {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    .product-showcase {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--soft);
+      border-radius: 36px;
+      padding: 35px;
+    }
+
+    .reference-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+    }
+
+    .reference-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .reference-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(90,15,29,0.9);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .products-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .affiliate-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 18px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      transition: var(--transition);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .affiliate-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .affiliate-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 18px;
+      object-fit: cover;
+    }
+
+    .affiliate-info h4 {
+      color: var(--burgundy);
+      margin-bottom: 6px;
+    }
+
+    .affiliate-info p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .mini-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: var(--burgundy);
+      color: var(--white);
+      border-radius: 100px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .mini-btn:hover {
+      background: var(--burgundy-light);
+    }
+
+    .warning-box {
+      margin-top: 60px;
+      background: rgba(90,15,29,0.08);
+      border: 1px solid rgba(90,15,29,0.1);
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .warning-box strong {
+      color: var(--burgundy);
+      display: block;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .steps {
+      background: linear-gradient(180deg, var(--white), var(--soft));
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .step-card {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 35px 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--burgundy);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 22px;
+    }
+
+    .step-card h3 {
+      color: var(--burgundy);
+      margin-bottom: 12px;
+    }
+
+    .step-card p {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .cta {
+      text-align: center;
+      background: var(--burgundy);
+      color: var(--white);
+      border-radius: 40px 40px 0 0;
+    }
+
+    .cta h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 18px;
+    }
+
+    .cta p {
+      max-width: 650px;
+      margin: 0 auto 30px;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .cta .btn-primary {
+      background: var(--white);
+      color: var(--burgundy);
+    }
+
+    footer {
+      background: var(--burgundy);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        flex-direction: column;
+        padding-top: 130px;
+      }
+
+      .product-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-card {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 70px 6%;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .affiliate-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .affiliate-card img {
+        width: 100%;
+        height: 200px;
+      }
+    }
+  /* POPUP */
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.4s ease;
+      padding: 20px;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-box {
+      background: var(--white);
+      width: 100%;
+      max-width: 520px;
+      border-radius: 32px;
+      padding: 45px 35px;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      animation: fadeUp 0.7s ease;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(90,15,29,0.08);
+      color: var(--burgundy);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .popup-box h2 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: var(--burgundy);
+      margin-bottom: 18px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 700;
+    }
+
+    .popup-box p {
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .popup-form input {
+      width: 100%;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.08);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .popup-form button {
+      border: none;
+      cursor: pointer;
+    }
+
+    .coupon-box {
+      display: none;
+      margin-top: 28px;
+      background: rgba(90,15,29,0.06);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .coupon-box.active {
+      display: block;
+    }
+
+    .coupon-box span {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+
+    .coupon-code {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .coupon-code strong {
+      background: var(--burgundy);
+      color: var(--white);
+      padding: 14px 22px;
+      border-radius: 14px;
+      letter-spacing: 1px;
+    }
+
+    .copy-btn {
+      border: none;
+      background: var(--white);
+      color: var(--burgundy);
+      padding: 14px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: var(--transition);
+    }
+
+    .copy-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .popup-box {
+        padding: 40px 24px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- POPUP DESCONTO -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+
+      <button class="popup-close" id="closePopup">×</button>
+
+      <h2 class="signature">ganhe 15% OFF</h2>
+
+      <p>
+        Insira seu WhatsApp para liberar seu cupom exclusivo de 15% OFF.
+      </p>
+
+      <form class="popup-form" id="popupForm">
+        <input type="tel" placeholder="Digite seu WhatsApp" required />
+
+        <button type="submit" class="btn btn-primary">
+          Liberar cupom
+        </button>
+      </form>
+
+      <div class="coupon-box" id="couponBox">
+        <span>
+          Utilize o cupom abaixo no checkout:
+        </span>
+
+        <div class="coupon-code">
+          <strong id="couponText">NAMORADOSNV10</strong>
+
+          <button class="copy-btn" id="copyCoupon">
+            Copiar cupom
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span>Arquivos digitais personalizados</span>
+
+      <h1 class="signature">
+        presentes que emocionam
+      </h1>
+
+      <p>
+        Surpreenda no Dia dos Namorados com templates digitais sofisticados, personalizados e fáceis de editar.
+        Crie presentes únicos sem gastar muito e transforme momentos simples em memórias inesquecíveis.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#produtos" class="btn btn-primary">Ver produtos</a>
+        <a href="#como-funciona" class="btn btn-secondary">Como funciona</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://placehold.co/600x750" alt="Template romântico" />
+
+      <div class="floating-card card-1">
+        <strong>100% digital</strong>
+        Personalize, imprima e monte do seu jeito.
+      </div>
+
+      <div class="floating-card card-2">
+        <strong>Prático e econômico</strong>
+        Uma opção sofisticada sem gastar muito.
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits reveal">
+    <div class="section-title">
+      <h2 class="signature">feito para impressionar</h2>
+      <p>
+        Templates digitais criados para quem deseja presentear com criatividade, romantismo e personalidade.
+      </p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h3>Fácil de personalizar</h3>
+        <p>
+          Edite diretamente pelo celular ou computador sem precisar de experiência em design.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Entrega imediata</h3>
+        <p>
+          Receba o acesso logo após a compra e comece a personalizar em poucos minutos.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Visual sofisticado</h3>
+        <p>
+          Designs modernos, elegantes e românticos pensados para encantar.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3>Custo-benefício</h3>
+        <p>
+          Monte presentes incríveis gastando menos do que presentes tradicionais.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="produtos" class="reveal">
+    <div class="section-title">
+      <h2 class="signature">monte um presente completo</h2>
+      <p>
+        Combine os templates digitais com itens físicos para criar experiências ainda mais especiais.
+      </p>
+    </div>
+
+    <div class="products-section">
+
+      <!-- BLOCO DE PRODUTO 01 -->
+      <div class="product-showcase">
+        <div class="reference-image">
+          <span class="reference-badge">REFERÊNCIA FINAL</span>
+          <img src="https://placehold.co/900x650" alt="Referência do presente" />
+        </div>
+
+        <div class="products-list">
+
+          <div class="affiliate-card">
+            <img src="https://placehold.co/300x300" alt="Produto afiliado" />
+
+            <div class="affiliate-info">
+              <h4>Produto complementar</h4>
+              <p>
+                Espaço para descrição breve do produto físico complementar.
+              </p>
+
+              <a href="#" class="mini-btn">Adicionar link</a>
+            </div>
+          </div>
+
+          <div class="affiliate-card">
+            <img src="https://placehold.co/300x300" alt="Produto afiliado" />
+
+            <div class="affiliate-info">
+              <h4>Produto complementar</h4>
+              <p>
+                Espaço para descrição breve do produto físico complementar.
+              </p>
+
+              <a href="#" class="mini-btn">Adicionar link</a>
+            </div>
+          </div>
+
+          <div class="affiliate-card">
+            <img src="https://placehold.co/300x300" alt="Produto afiliado" />
+
+            <div class="affiliate-info">
+              <h4>Produto complementar</h4>
+              <p>
+                Espaço para descrição breve do produto físico complementar.
+              </p>
+
+              <a href="#" class="mini-btn">Adicionar link</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BLOCO DE PRODUTO 02 -->
+      <div class="product-showcase">
+        <div class="reference-image">
+          <span class="reference-badge">REFERÊNCIA FINAL</span>
+          <img src="https://placehold.co/900x650" alt="Referência do presente" />
+        </div>
+
+        <div class="products-list">
+
+          <div class="affiliate-card">
+            <img src="https://placehold.co/300x300" alt="Produto afiliado" />
+
+            <div class="affiliate-info">
+              <h4>Produto complementar</h4>
+              <p>
+                Espaço para descrição breve do produto físico complementar.
+              </p>
+
+              <a href="#" class="mini-btn">Adicionar link</a>
+            </div>
+          </div>
+
+          <div class="affiliate-card">
+            <img src="https://placehold.co/300x300" alt="Produto afiliado" />
+
+            <div class="affiliate-info">
+              <h4>Produto complementar</h4>
+              <p>
+                Espaço para descrição breve do produto físico complementar.
+              </p>
+
+              <a href="#" class="mini-btn">Adicionar link</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="warning-box">
+      <strong>Importante:</strong>
+      Você está adquirindo um produto digital personalizável. Os itens físicos exibidos nas referências são apenas sugestões de composição e não acompanham a compra.
+    </div>
+  </section>
+
+  <section id="como-funciona" class="steps reveal">
+    <div class="section-title">
+      <h2 class="signature">como funciona</h2>
+      <p>
+        Um processo rápido, simples e pensado para que você consiga montar um presente incrível sem complicação.
+      </p>
+    </div>
+
+    <div class="steps-grid">
+
+      <div class="step-card">
+        <div class="step-number">01</div>
+
+        <h3>Escolha o template</h3>
+
+        <p>
+          Selecione o modelo que mais combina com a sua história e finalize sua compra.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">02</div>
+
+        <h3>Receba o acesso</h3>
+
+        <p>
+          Você receberá automaticamente seu acesso após a confirmação da compra e poderá começar a personalizar imediatamente.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">03</div>
+
+        <h3>Personalize do seu jeito</h3>
+
+        <p>
+          Edite textos, fotos e detalhes facilmente usando celular ou computador.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">04</div>
+
+        <h3>Imprima e monte</h3>
+
+        <p>
+          Faça o download do arquivo final e monte um presente memorável com acabamento profissional.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 class="signature">transforme pequenos detalhes em grandes memórias</h2>
+
+    <p>
+      Crie presentes personalizados, emocionantes e sofisticados sem precisar gastar muito.
+    </p>
+
+    <a href="#produtos" class="btn btn-primary">Escolher meu template</a>
+  </section>
+
+  <footer>
+    © 2026 • Templates digitais personalizados para o Dia dos Namorados.
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    window.addEventListener('scroll', () => {
+      reveals.forEach((element) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+
+        if (elementTop < windowHeight - 100) {
+          element.classList.add('active');
+        }
+      });
+    });
+  
+    // POPUP
+
+    const popupOverlay = document.getElementById('popupOverlay');
+    const closePopup = document.getElementById('closePopup');
+    const popupForm = document.getElementById('popupForm');
+    const couponBox = document.getElementById('couponBox');
+    const copyCoupon = document.getElementById('copyCoupon');
+    const couponText = document.getElementById('couponText');
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        popupOverlay.classList.add('active');
+      }, 1800);
+    });
+
+    closePopup.addEventListener('click', () => {
+      popupOverlay.classList.remove('active');
+    });
+
+    popupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      couponBox.classList.add('active');
+      popupForm.style.display = 'none';
+    });
+
+    copyCoupon.addEventListener('click', () => {
+      navigator.clipboard.writeText(couponText.innerText);
+
+      copyCoupon.innerText = 'Copiado!';
+
+      setTimeout(() => {
+        copyCoupon.innerText = 'Copiar cupom';
+      }, 2000);
+    });
+
+  </script>
+
+</body>
+</html>
