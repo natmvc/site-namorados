@@ -473,6 +473,18 @@
         padding: 70px 6%;
       }
 
+      .hero-content span {
+        font-size: 0.72rem;
+        letter-spacing: 1.5px;
+        white-space: nowrap;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        line-height: 0.95;
+        max-width: 320px;
+      }
+
       .hero-buttons {
         flex-direction: column;
       }
@@ -646,7 +658,14 @@
       </p>
 
       <form class="popup-form" id="popupForm">
-        <input type="tel" id="whatsapp" placeholder="Digite seu WhatsApp" required />
+        <input 
+          type="tel" 
+          id="whatsapp" 
+          placeholder="(DDD) + WhatsApp"
+          required
+          minlength="10"
+          maxlength="15"
+        />
 
         <button type="submit" class="btn btn-primary">
           Liberar cupom
@@ -973,7 +992,16 @@
 document.getElementById('popupForm').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  const whatsapp = document.getElementById('whatsapp').value;
+  let whatsapp = document.getElementById('whatsapp').value;
+
+  // Remove tudo que não for número
+  whatsapp = whatsapp.replace(/\D/g, '');
+
+  // Valida DDD + número
+  if (whatsapp.length < 10 || whatsapp.length > 11) {
+    alert('Digite seu WhatsApp com DDD.');
+    return;
+  }
 
   await fetch('https://hook.us2.make.com/34tyy2ddj1umbbo5zjo1m4zdep6ra5h4', {
     method: 'POST',
@@ -987,7 +1015,27 @@ document.getElementById('popupForm').addEventListener('submit', async function(e
     })
   });
 
+  couponBox.classList.add('active');
+  popupForm.style.display = 'none';
+
   alert('Cupom liberado com sucesso!');
+});
+
+// Máscara automática
+document.getElementById('whatsapp').addEventListener('input', function(e) {
+  let value = e.target.value.replace(/\D/g, '');
+
+  if (value.length > 11) {
+    value = value.slice(0, 11);
+  }
+
+  if (value.length > 6) {
+    value = value.replace(/(\d{2})(\d{5})(\d+)/, '($1) $2-$3');
+  } else if (value.length > 2) {
+    value = value.replace(/(\d{2})(\d+)/, '($1) $2');
+  }
+
+  e.target.value = value;
 });
 </script>
 </body>
