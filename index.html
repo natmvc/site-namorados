@@ -646,7 +646,7 @@
       </p>
 
       <form class="popup-form" id="popupForm">
-        <input type="tel" placeholder="Digite seu WhatsApp" required />
+        <input type="tel" id="whatsapp" placeholder="Digite seu WhatsApp" required />
 
         <button type="submit" class="btn btn-primary">
           Liberar cupom
@@ -969,5 +969,26 @@
 
   </script>
 
+  <script>
+document.getElementById('popupForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const whatsapp = document.getElementById('whatsapp').value;
+
+  await fetch('https://hook.us2.make.com/34tyy2ddj1umbbo5zjo1m4zdep6ra5h4', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      whatsapp: whatsapp,
+      pagina: window.location.href,
+      data: new Date().toLocaleString()
+    })
+  });
+
+  alert('Cupom liberado com sucesso!');
+});
+</script>
 </body>
 </html>
