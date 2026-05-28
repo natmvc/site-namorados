@@ -271,19 +271,63 @@
     }
 
     
-    .custom-reference-title {
+    
+.custom-reference-title {
       position: absolute;
-      left: 24px;
-      bottom: 24px;
+      left: 22px;
+      bottom: 22px;
       color: var(--white);
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.05;
       z-index: 5;
-      max-width: 80%;
+      max-width: 85%;
       text-shadow: 0 4px 20px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
+
+    .reference-type {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    .reference-name {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    @media (max-width: 600px) {
+      .custom-reference-title {
+        left: 18px;
+        bottom: 18px;
+        gap: 1px;
+      }
+
+      .reference-type {
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .reference-name {
+        font-size: 0.88rem;
+        font-weight: 400;
+        line-height: 1.05;
+        max-width: 95%;
+      }
+
+      .final-reference-note {
+        font-size: 0.68rem;
+        padding: 8px 12px;
+        max-width: 85%;
+        line-height: 1.2;
+      }
+    }
+
 
 
     .reference-image img {
@@ -291,6 +335,23 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+
+    .final-reference-note {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      color: var(--burgundy);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.4px;
+      z-index: 5;
+      background: rgba(255,255,255,0.9);
+      padding: 10px 14px;
+      border-radius: 100px;
+      text-transform: uppercase;
     }
 
     .reference-badge {
@@ -815,10 +876,12 @@
       <!-- BLOCO DE PRODUTO 01 -->
       <div class="product-showcase">
         <div class="reference-image">
-          <div class="custom-reference-title">
-            QUADRO<br>
-            I LOVE YOU TO THE MOON AND BACK
-          </div>
+          
+<div class="custom-reference-title">
+  <span class="reference-type">QUADRO</span>
+  <span class="reference-name">I LOVE YOU TO THE MOON AND BACK</span>
+</div>
+
           
           <img src="5FD67A7E-5769-446A-AC27-3A4B1865934B.png" alt="Quadro I Love You to the Moon and Back" />
         </div>
@@ -871,7 +934,9 @@
       <!-- BLOCO DE PRODUTO 02 -->
       <div class="product-showcase">
         <div class="reference-image">
-          <span class="reference-badge">REFERÊNCIA FINAL</span>
+          <div class="final-reference-note">
+            APENAS UMA REFERÊNCIA DO RESULTADO FINAL
+          </div>
           <img src="https://placehold.co/900x650" alt="Referência do presente" />
         </div>
 
