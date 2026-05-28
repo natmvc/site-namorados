@@ -270,6 +270,22 @@
       border-radius: 28px;
     }
 
+    
+    .custom-reference-title {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      color: var(--white);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.05;
+      z-index: 5;
+      max-width: 80%;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    }
+
+
     .reference-image img {
       width: 100%;
       height: 100%;
@@ -298,10 +314,11 @@
     .affiliate-card {
       background: var(--white);
       border-radius: 24px;
-      padding: 18px;
+      padding: 30px;
       display: flex;
+      flex-direction: column;
       gap: 18px;
-      align-items: center;
+      align-items: flex-start;
       transition: var(--transition);
       box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     }
@@ -311,10 +328,7 @@
     }
 
     .affiliate-card img {
-      width: 90px;
-      height: 90px;
-      border-radius: 18px;
-      object-fit: cover;
+      display: none;
     }
 
     .affiliate-info h4 {
@@ -801,7 +815,11 @@
       <!-- BLOCO DE PRODUTO 01 -->
       <div class="product-showcase">
         <div class="reference-image">
-          <span class="reference-badge">QUADRO I LOVE YOU TO THE MOON AND BACK</span>
+          <div class="custom-reference-title">
+            QUADRO<br>
+            I LOVE YOU TO THE MOON AND BACK
+          </div>
+          
           <img src="5FD67A7E-5769-446A-AC27-3A4B1865934B.png" alt="Quadro I Love You to the Moon and Back" />
         </div>
 
@@ -816,7 +834,7 @@
                 Moldura minimalista perfeita para montar o quadro personalizado e deixar o presente ainda mais sofisticado.
               </p>
 
-              <a href="https://meli.la/2Br7cLr" class="mini-btn" target="_blank">Ver moldura</a>
+              <a href="https://meli.la/2Br7cLr" class="mini-btn" target="_blank">Comprar</a>
             </div>
           </div>
 
@@ -843,7 +861,7 @@
                 Porém, o template digital ainda precisa ser adquirido separadamente para que você possa editar a arte com suas próprias fotos e informações.
               </p>
 
-              <a href="https://meli.la/29Shgmu" class="mini-btn" target="_blank">Ver opção</a>
+              <a href="https://meli.la/29Shgmu" class="mini-btn" target="_blank">Comprar</a>
             </div>
           </div>
 
